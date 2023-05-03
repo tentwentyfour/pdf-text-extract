@@ -61,6 +61,12 @@ function pdfTextExtract (filePath, options, pdfToTextCommand, cb) {
   if (options.layout === 'raw') { args.push('-raw') }
   if (options.layout === 'htmlmeta') { args.push('-htmlmeta') }
 
+  // These options only work with pdftotext on Windows (version 4.04)
+  if (options.layout === 'table') { args.push('-table') }
+  if (options.layout === 'simple') { args.push('-simple') }
+  if (options.layout === 'simple2') { args.push('-simple2') }
+  if (options.layout === 'lineprinter') { args.push('-lineprinter') }
+
   // Output text encoding (UCS-2, ASCII7, Latin1, UTF-8, ZapfDingbats or Symbol)
   if (options.encoding) { args.push('-enc'); args.push(options.encoding) }
 
